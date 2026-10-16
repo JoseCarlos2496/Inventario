@@ -1,0 +1,32 @@
+name: Deploy .NET 10 to SmarterASP.NET
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and Deploy API
+    runs-on: windows-latest
+
+    environment: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
+      
+      - name: Restore solution
+        run: dotnet restore Inventario.slnx
