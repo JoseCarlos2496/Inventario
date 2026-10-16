@@ -44,3 +44,16 @@ jobs:
           --configuration Release
           --no-restore
           --output ./publish
+
+      - name: Deploy to SmarterASP.NET
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./publish/
+          server-dir: ./
+          dangerous-clean-slate: false
+          log-level: standard
