@@ -30,3 +30,9 @@ jobs:
       
       - name: Restore solution
         run: dotnet restore Inventario.slnx
+
+      - name: Build solution
+        run: >
+          dotnet build Inventario.slnx
+          --configuration Release
+          --no-restore
