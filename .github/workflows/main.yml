@@ -57,3 +57,4 @@ jobs:
           server-dir: ./
           dangerous-clean-slate: false
           log-level: standard
+          passive: true
