@@ -23,10 +23,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '10.x'
+      #- name: Setup .NET 10
+      #  uses: actions/setup-dotnet@v4
+      #  with:
+      #    dotnet-version: '10.x'
       
       - name: Restore solution
         run: dotnet restore Inventario.slnx
