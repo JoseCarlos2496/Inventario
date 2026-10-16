@@ -36,3 +36,11 @@ jobs:
           dotnet build Inventario.slnx
           --configuration Release
           --no-restore
+      
+      - name: Publish API
+        run: >
+          dotnet publish
+          ./Api/Inventario.Api/Inventario.Api.csproj
+          --configuration Release
+          --no-restore
+          --output ./publish
