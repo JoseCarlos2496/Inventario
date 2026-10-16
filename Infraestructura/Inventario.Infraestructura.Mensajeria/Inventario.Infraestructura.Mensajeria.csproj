@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infraestructura\Inventario.Infraestructura.Modelo\Inventario.Infraestructura.Modelo.csproj" />
+    <ProjectReference Include="..\..\Aplicacion\Inventario.MensajeriaContrato\Inventario.MensajeriaContrato.csproj" />
+    <ProjectReference Include="..\..\Aplicacion\Inventario.Aplicacion.Command\Inventario.Aplicacion.Command.csproj" />
+  </ItemGroup>
+
+</Project>

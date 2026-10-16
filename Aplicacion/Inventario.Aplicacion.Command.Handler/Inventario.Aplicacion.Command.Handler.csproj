@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Dominio\Inventario.Agregados\Inventario.Agregados.csproj" />
+    <ProjectReference Include="..\..\Aplicacion\Inventario.Aplicacion.Command\Inventario.Aplicacion.Command.csproj" />
+    <ProjectReference Include="..\..\Dominio\Inventario.RepositorioContrato\Inventario.RepositorioContrato.csproj" />
+  </ItemGroup>
+
+</Project>

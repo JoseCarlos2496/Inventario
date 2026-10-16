@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infraestructura\Inventario.Infraestructura.Modelo\Inventario.Infraestructura.Modelo.csproj" />
+    <ProjectReference Include="..\..\Dominio\Inventario.RepositorioContrato\Inventario.RepositorioContrato.csproj" />
+    <ProjectReference Include="..\..\Aplicacion\Inventario.MensajeriaContrato\Inventario.MensajeriaContrato.csproj" />
+    <ProjectReference Include="..\..\Compartido\Inventario.Mediador\Inventario.Mediador.csproj" />
+  </ItemGroup>
+
+</Project>

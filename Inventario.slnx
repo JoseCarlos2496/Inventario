@@ -1,0 +1,37 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="Api/Inventario.Api/Inventario.Api.csproj" />
+  </Folder>
+  <Folder Name="/Aplicacion/">
+    <Project Path="Aplicacion/Inventario.Aplicacion.Command/Inventario.Aplicacion.Command.csproj" />
+    <Project Path="Aplicacion/Inventario.Aplicacion.Command.Handler/Inventario.Aplicacion.Command.Handler.csproj" />
+    <Project Path="Aplicacion/Inventario.Aplicacion.Dto/Inventario.Aplicacion.Dto.csproj" />
+    <Project Path="Aplicacion/Inventario.Aplicacion.Notification.Handler/Inventario.Aplicacion.Notification.Handler.csproj" />
+    <Project Path="Aplicacion/Inventario.Aplicacion.Query/Inventario.Aplicacion.Query.csproj" />
+    <Project Path="Aplicacion/Inventario.Aplicacion.Query.Handler/Inventario.Aplicacion.Query.Handler.csproj" />
+    <Project Path="Aplicacion/Inventario.MensajeriaContrato/Inventario.MensajeriaContrato.csproj" />
+  </Folder>
+  <Folder Name="/Compartido/">
+    <Project Path="Compartido/Inventario.Contratos/Inventario.Contratos.csproj" />
+    <Project Path="Compartido/Inventario.Mediador/Inventario.Mediador.csproj" />
+  </Folder>
+  <Folder Name="/Dominio/">
+    <Project Path="Dominio/Inventario.Agregados/Inventario.Agregados.csproj" />
+    <Project Path="Dominio/Inventario.Dominio.Comun/Inventario.Dominio.Comun.csproj" />
+    <Project Path="Dominio/Inventario.Dominio.Eventos/Inventario.Dominio.Eventos.csproj" />
+    <Project Path="Dominio/Inventario.ObjetosValor/Inventario.ObjetosValor.csproj" />
+    <Project Path="Dominio/Inventario.RepositorioContrato/Inventario.RepositorioContrato.csproj" />
+  </Folder>
+  <Folder Name="/Infraestructura/">
+    <Project Path="Infraestructura/Inventario.Infraestructura.Configuracion/Inventario.Infraestructura.Configuracion.csproj" />
+    <Project Path="Infraestructura/Inventario.Infraestructura.Mensajeria/Inventario.Infraestructura.Mensajeria.csproj" />
+    <Project Path="Infraestructura/Inventario.Infraestructura.Modelo/Inventario.Infraestructura.Modelo.csproj" />
+    <Project Path="Infraestructura/Inventario.Infraestructura.Repositorio/Inventario.Infraestructura.Repositorio.csproj" />
+  </Folder>
+  <Folder Name="/docs/">
+    <File Path="README.md" />
+    <File Path="docs/ARQUITECTURA.md" />
+    <File Path="docs/ENDPOINTS.md" />
+    <File Path="docs/FLUJO_Y_EVENTOS.md" />
+  </Folder>
+</Solution>

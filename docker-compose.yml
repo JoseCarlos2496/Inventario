@@ -1,0 +1,9 @@
+# Broker compartido para probar la integración con Recepción y Preparación.
+# Panel: http://localhost:15672 (guest / guest). Para usarlo: "Mensajeria:Proveedor": "RabbitMq".
+services:
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: taller-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"

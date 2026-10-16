@@ -1,0 +1,100 @@
+@base = http://localhost:5180
+@compra1 = cccccccc-0000-0000-0000-000000000001
+@orden1 = aaaaaaaa-0000-0000-0000-000000000001
+@orden2 = aaaaaaaa-0000-0000-0000-000000000002
+
+### Catálogo de eventos que Inventario consume y publica
+GET {{base}}/api/inventario/eventos/catalogo
+
+### Catálogo de errores (los ORD-1xx son motivos de rechazo de una orden)
+GET {{base}}/api/inventario/errores/catalogo
+
+### Ubicaciones (al arrancar vacía se crean BOD-01 y TDA-01)
+GET {{base}}/api/inventario/ubicaciones
+
+### Crear otra ubicación
+POST {{base}}/api/inventario/ubicaciones
+Content-Type: application/json
+
+{ "codigo": "TDA-02", "nombre": "Tienda Norte", "tipo": "Tienda", "prioridad": 3 }
+
+### 1. (simula Compras) Crea productos con sus características e ingresa stock: 4 laptops en bodega, 1 en tienda
+POST {{base}}/api/inventario/compras/simular
+Content-Type: application/json
+
+{
+  "compraId": "{{compra1}}",
+  "lineas": [
+    {
+      "sku": "LAP-001", "nombre": "Laptop 14",
+      "descripcion": "Laptop de oficina", "marca": "Lenovo", "modelo": "ThinkPad E14",
+      "categoria": "Cómputo", "unidadMedida": "unidad",
+      "caracteristicas": { "RAM": "16 GB", "SSD": "512 GB" },
+      "codigoUbicacion": "BOD-01", "cantidad": 4
+    },
+    { "sku": "LAP-001", "nombre": "Laptop 14", "codigoUbicacion": "TDA-01", "cantidad": 1 },
+    { "sku": "MOU-001", "nombre": "Mouse inalámbrico", "marca": "Logitech", "codigoUbicacion": "TDA-01", "cantidad": 3 }
+  ]
+}
+
+### 2. Productos
+GET {{base}}/api/inventario/productos
+
+### 3. Existencias: total y desglose por ubicación
+GET {{base}}/api/inventario/existencias
+
+### 4. (simula Recepción) Orden que no alcanza -> inventario.orden.rechazada (ORD-102, ORD-101)
+POST {{base}}/api/inventario/eventos
+Content-Type: application/json
+
+{
+  "eventoId": "eeeeeeee-0000-0000-0000-000000000002",
+  "tipo": "recepcion.orden-compra.recibida",
+  "version": 1,
+  "ocurridoEn": "2026-10-14T10:00:00Z",
+  "origen": "recepcion",
+  "payload": {
+    "ordenCompraId": "{{orden2}}",
+    "lineas": [
+      { "sku": "LAP-001", "cantidad": 6 },
+      { "sku": "NOEXISTE", "cantidad": 1 }
+    ]
+  }
+}
+
+### 5. (simula Recepción) 5 laptops + 1 mouse -> descuenta y avisa a Preparación: 4 en BOD-01, 1 en TDA-01
+POST {{base}}/api/inventario/eventos
+Content-Type: application/json
+
+{
+  "eventoId": "eeeeeeee-0000-0000-0000-000000000001",
+  "tipo": "recepcion.orden-compra.recibida",
+  "version": 1,
+  "ocurridoEn": "2026-10-14T10:01:00Z",
+  "origen": "recepcion",
+  "payload": {
+    "ordenCompraId": "{{orden1}}",
+    "lineas": [
+      { "sku": "LAP-001", "cantidad": 5 },
+      { "sku": "MOU-001", "cantidad": 1 }
+    ]
+  }
+}
+
+### 6. Misma orden por HTTP directo: devuelve el mismo resultado sin volver a descontar
+POST {{base}}/api/inventario/ordenes
+Content-Type: application/json
+
+{
+  "ordenCompraId": "{{orden1}}",
+  "lineas": [ { "sku": "LAP-001", "cantidad": 5 } ]
+}
+
+### 7. Consultar cómo se surtió la orden
+GET {{base}}/api/inventario/ordenes/{{orden1}}
+
+### 8. Existencias después de la orden
+GET {{base}}/api/inventario/existencias
+
+### 9. Eventos de la Outbox que agotaron sus intentos
+GET {{base}}/api/sistema/eventos-fallidos
